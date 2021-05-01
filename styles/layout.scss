@@ -2,8 +2,21 @@
 
 body {
   background-color: #EEE;
+}
 
+header {
+  display: flex;
+  background-color: pink;
+  height: 400px;
+  border-radius: 50px;
+  position: relative;
+  top: -50px;
   h1 {
+    display: flex;
     color: #244751;
+    z-index: 1;
+    align-self:center;
+    margin: 5em
   }
 }
+

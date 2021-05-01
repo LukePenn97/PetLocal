@@ -1,0 +1,11 @@
+.container {
+  display:flex;
+}
+#listings {
+  display:flex;
+  span {
+    display: flex;
+    margin: 1em;
+
+  }
+}
