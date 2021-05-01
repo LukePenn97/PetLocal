@@ -1,11 +1,13 @@
 .container {
   display:flex;
 }
+
 #listings {
   display:flex;
   span {
     display: flex;
+    flex-flow: column wrap;
     margin: 1em;
-
+    width: 15em;
   }
 }
