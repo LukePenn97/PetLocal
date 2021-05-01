@@ -44,7 +44,6 @@ const widgetsRoutes = require("./routes/widgets");
 
 const myListingsRoutes = require("./routes/mylistings");
 
-const widgetsRoutes = require("./routes/widgets");
 console.log('in server.js');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
