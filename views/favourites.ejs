@@ -22,17 +22,26 @@
     <h1>Your Favourites</h1>
 
     <div class="card" style="width: 18rem;">
-      <img
-        src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2249&q=80"
-        class="card-img-top">
-      <div class="card-body">
-        <h5 class="item-title">Item Title</h5>
-        <h6 class="item-price">$500.00</h6>
-        <p class="item-description">Item's Description... will be pulled in from an SQL query eventually.. along with
-          all other favourites</p>
-        <a href="#" class="btn btn-secondary">Learn More</a>
-        <i class="fas fa-star"></i>
-      </div>
+
+      <% for(const favourite of favourites) { %>
+
+        <img src="<%= favourite.image_url %>" class="card-img-top">
+        <div class="card-body">
+          <h5 class="item-title">
+            <%= favourite.title%>
+          </h5>
+          <h6 class="item-price">
+            <%= favourite.price / 100 %>
+          </h6>
+          <p class="item-description">
+            <%= favourite.description%>
+          </p>
+          <a href="#" class="btn btn-secondary">Learn More</a>
+          <i class="fas fa-star"></i>
+        </div>
+
+        <% } %>
+
     </div>
 
     <!-- Bootstrap Bundle with Popper -->
