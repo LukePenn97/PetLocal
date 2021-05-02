@@ -11,7 +11,25 @@ module.exports = (db) => {
         res.json(listings);
       })
       .catch(err => {
-        console.log('in listings.js catch')
+        console.log('in listings.js catch');
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  // get specific item
+  router.get("/:id", (req, res) => {
+    // console.log('in listings.js router');
+    console.log('req.params.id: ', req.params.id);
+    db.query(`SELECT * FROM listings WHERE id = ${req.params.id};`)
+      .then(data => {
+        // console.log('in listings.js .then');
+        const listings = data.rows[0];
+        res.render("listing",{listings: listings});
+      })
+      .catch(err => {
+        // console.log('in listings.js catch');
         res
           .status(500)
           .json({ error: err.message });
