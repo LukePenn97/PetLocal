@@ -39,6 +39,8 @@ const searchRoutes = require("./routes/search");
 const newItemRoutes = require("./routes/new_item");
 const favouritesRoutes = require("./routes/favourites");
 const myListingsRoutes = require("./routes/my_listings");
+const loginRoutes = require("./routes/login");
+const errorRoutes = require("./routes/error");
 
 console.log('in server.js');
 
@@ -49,6 +51,8 @@ app.use("/search", searchRoutes(db));
 app.use("/new_item", newItemRoutes(db));
 app.use("/favourites", favouritesRoutes(db));
 app.use("/my_listings", myListingsRoutes(db));
+app.use("/login", loginRoutes(db));
+app.use("/error", errorRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 

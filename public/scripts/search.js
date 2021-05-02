@@ -2,10 +2,10 @@ $(() => {
   $("#search-listings-form").on("submit", function(event) {
     console.log('form submitted');
     event.preventDefault();
-    paramaters = $(this).serialize();
+    let parameters = $(this).serialize();
     console.log("search.js", parameters);
-    // router.get("/search", (req, res) => {
-    //   res.json(parameters);
-    // });
-  }
+    router.get("/search", (req, res) => {
+      res.json(parameters);
+    });
+  });
 });
