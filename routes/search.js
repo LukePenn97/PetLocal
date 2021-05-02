@@ -9,14 +9,12 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     console.log('req.body = ',req.body);
     let queryString = `SELECT * FROM listings`;
-    if (req.body.minPrice || req.body.maxPrice) {
-      queryString += ` WHERE price`;
-      if (req.body.minPrice) {
-        queryString += ` >= ${req.body.minPrice * 100}`;
-      }
-      if (req.body.maxPrice) {
-        queryString += ` <= ${req.body.maxPrice * 100}`;
-      }
+    if (req.body.minPrice && req.body.maxPrice) {
+      queryString += ` WHERE price >= ${req.body.minPrice * 100} AND price <= ${req.body.maxPrice * 100}`;
+    } else if (req.body.minPrice) {
+      queryString += ` WHERE price >= ${req.body.minPrice * 100}`;
+    } else if (req.body.maxPrice) {
+      queryString += ` WHERE price <= ${req.body.maxPrice * 100}`;
     }
     db.query(queryString)
       .then(data => {
