@@ -16,31 +16,31 @@
 
   <%- include('partials/_navbar') %>
 
-    <form action="/listings" method="POST" id="add-new-item-form">
+    <form action="/new_item/" method="POST" id="add-new-item-form">
       <div class="mb-3">
         <label for="item-title" class="form-label">Title</label>
-        <input type="text" class="form-control" id="item-title" placeholder="Title">
+        <input name="title" type="text" class="form-control" id="item-title" placeholder="Title">
       </div>
 
       <div class="input-group">
         <span class="item-description">Description</span>
-        <textarea class="form-control" id="item-description" placeholder="Description"></textarea>
+        <textarea name="description" class="form-control" id="item-description" placeholder="Description"></textarea>
       </div>
 
       <div class="mb-3">
         <label for="item-url" class="form-label">Image URL</label>
-        <input type="text" class="form-control" id="item-url" placeholder="Image URL">
+        <input name="image_url" type="text" class="form-control" id="item-url" placeholder="Image URL">
       </div>
 
       <div class="mb-3">
         <span class="item-price">Price</span>
-        <input class="form-control" id="item-price" placeholder="Price">
+        <input name="price" class="form-control" id="item-price" placeholder="Price">
       </div>
 
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <span class="item-location">Location</span>
         <input class="form-control" id="item-location" placeholder="Location">
-      </div>
+      </div> -->
 
       <button type="submit" class="btn btn-secondary" id="add-new-item-button">Add New Listing</button>
 
@@ -50,6 +50,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous"></script>
+    <script src="./new_item.js"></script>
 </body>
 
 </html>
