@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-const id = 2;
-
 module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`
@@ -10,7 +8,7 @@ module.exports = (db) => {
     FROM favourites
     JOIN listings ON listings.id = favourites.listing_id
     JOIN users ON favourites.user_id = users.id
-    WHERE favourites.user_id = ${id};
+    WHERE favourites.user_id = ${req.user.id};
     `)
       .then(data => {
         const favourites = data.rows;

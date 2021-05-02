@@ -4,7 +4,7 @@ const id = 2;
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    res.render('search', {listings: null})
+    res.render('search', {listings: null});
   });
   router.post("/", (req, res) => {
     console.log('req.body = ',req.body);
