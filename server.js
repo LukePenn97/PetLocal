@@ -9,6 +9,8 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
+const bcrypt = require('bcrypt');
+const cookieSession = require('cookie-session');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -31,6 +33,13 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}));
+
+// Middleware
+const authMiddleware = require("./authMiddleware");
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -46,11 +55,11 @@ console.log('in server.js');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/listings", listingsRoutes(db));
-app.use("/search", searchRoutes(db));
-app.use("/new_item", newItemRoutes(db));
-app.use("/favourites", favouritesRoutes(db));
-app.use("/my_listings", myListingsRoutes(db));
+app.use("/listings", authMiddleware(db), listingsRoutes(db));
+app.use("/search", authMiddleware(db), searchRoutes(db));
+app.use("/new_item", authMiddleware(db), newItemRoutes(db));
+app.use("/favourites", authMiddleware(db), favouritesRoutes(db));
+app.use("/my_listings", authMiddleware(db), myListingsRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/error", errorRoutes(db));
 // Note: mount other resources here, using the same pattern above

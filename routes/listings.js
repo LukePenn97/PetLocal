@@ -3,15 +3,16 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    console.log('in listings.js router');
+    // console.log('in listings.js router');
+
     db.query(`SELECT * FROM listings;`)
       .then(data => {
-        console.log('in listings.js .then');
+        // console.log('in listings.js .then');
         const listings = data.rows;
         res.json(listings);
       })
       .catch(err => {
-        console.log('in listings.js catch');
+        // console.log('in listings.js catch');
         res
           .status(500)
           .json({ error: err.message });
@@ -22,7 +23,12 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
     // console.log('in listings.js router');
     console.log('req.params.id: ', req.params.id);
-    db.query(`SELECT * FROM listings WHERE id = ${req.params.id};`)
+
+    db.query(`
+    SELECT *
+    FROM listings
+    WHERE id = ${req.params.id};
+    `)
       .then(data => {
         // console.log('in listings.js .then');
         const listings = data.rows[0];

@@ -21,22 +21,24 @@
 
     <h1>Login to Buy/Sell</h1>
 
-    <form>
+    <form action="/login/" method="POST" id="login-form">
+
       <div class="row mb-3">
         <label for="user-email" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-10">
-          <input type="email" class="form-control" id="user-email" placeholder="Email Address">
+          <input name="email" type="email" class="form-control" id="user-email" placeholder="Email Address">
         </div>
       </div>
 
       <div class="row mb-3">
         <label for="user-password" class="col-sm-2 col-form-label">Password</label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" id="user-password" placeholder="Password">
+          <input name="password" type="password" class="form-control" id="user-password" placeholder="Password">
         </div>
       </div>
 
-      <button type="submit" class="btn btn-secondary">Login</button>
+      <button type="submit" class="btn btn-secondary" id="login-button">Login</button>
+
     </form>
 
     <!-- Bootstrap Bundle with Popper -->
