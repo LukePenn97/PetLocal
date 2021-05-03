@@ -6,7 +6,7 @@ const cookieSession = require('cookie-session');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    res.render("login");
+    res.render("login", { user: req.user });
   });
 
 

@@ -15,7 +15,7 @@ module.exports = (db) => {
     `)
       .then(data => {
         const favourites = data.rows;
-        res.render("favourites", {favourites: favourites});
+        res.render("favourites", { favourites: favourites, user: req.user });
       })
       .catch((err) => {
         return err.message;

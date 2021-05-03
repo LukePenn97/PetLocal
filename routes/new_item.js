@@ -3,7 +3,7 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    res.render("new_item");
+    res.render("new_item", { user: req.user });
   });
 
   const addNewListing = function(listing) {

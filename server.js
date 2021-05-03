@@ -50,6 +50,7 @@ const favouritesRoutes = require("./routes/favourites");
 const myListingsRoutes = require("./routes/my_listings");
 const loginRoutes = require("./routes/login");
 const errorRoutes = require("./routes/error");
+const logoutRoutes = require("./routes/logout");
 
 console.log('in server.js');
 
@@ -62,6 +63,7 @@ app.use("/favourites", authMiddleware(db), favouritesRoutes(db));
 app.use("/my_listings", authMiddleware(db), myListingsRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/error", errorRoutes(db));
+app.use("/logout", logoutRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
@@ -69,7 +71,7 @@ app.use("/error", errorRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", { user: req.user });
 });
 
 app.listen(PORT, () => {
