@@ -3,12 +3,10 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-
-    console.log('req.body error: ', req.body);
-
-    res.render("error");
+    res.render("error", {
+      message: 'you need to be logged in to view this page',
+      redirect: '/login' });
   });
-
 
   return router;
 };
