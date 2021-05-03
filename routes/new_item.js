@@ -43,7 +43,7 @@ module.exports = (db) => {
       return res.status(400).json({ message: "invalid req params"});
     }
 
-    const userId = 2;
+    const userId = req.user.id;
     console.log(req.body);
     addNewListing({...req.body, userId})
       .then(() => {

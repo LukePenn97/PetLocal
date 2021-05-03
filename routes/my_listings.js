@@ -15,7 +15,8 @@ module.exports = (db) => {
       .query(`
     SELECT *
     FROM listings
-    WHERE user_id = ${userId};
+    WHERE user_id = ${userId}
+    ORDER BY date_posted DESC;
     `)
       .then(queryResult => {
         const listings = queryResult.rows;
