@@ -43,6 +43,7 @@ const authMiddleware = require("./authMiddleware");
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
+const homeRoutes = require("./routes/home");
 const listingsRoutes = require("./routes/listings");
 const searchRoutes = require("./routes/search");
 const newItemRoutes = require("./routes/new_item");
@@ -64,16 +65,12 @@ app.use("/my_listings", authMiddleware(db), myListingsRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/error", errorRoutes(db));
 app.use("/logout", logoutRoutes(db));
+app.use("/", homeRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
-// Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-app.get("/", (req, res) => {
-  res.render("index", { user: req.user });
-});
-
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

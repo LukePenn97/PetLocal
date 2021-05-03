@@ -20,7 +20,7 @@
   <!-- Font Awesome BootstrapCDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
-  <title>Buy/Sell Search</title>
+  <title>Buy/Sell Home</title>
 </head>
 
 <body>
@@ -31,12 +31,29 @@
     </header>
     <h2>Featured Friends!</h2>
 
-    <main class="container">
-      <section id="listings">
+    <div class="card" style="width: 18rem;">
 
-      </section>
-    </main>
+      <% for(const listing of listings) { %>
+        <a href="/listings/<%= listing.id %>">
 
+          <img src="<%= listing.image_url %>" class="card-img-top">
+          <div class="card-body">
+            <h5 class="item-title">
+              <%= listing.title %>
+            </h5>
+            <h6 class="item-price">
+              <%= listing.price / 100 %>
+            </h6>
+            <p class="item-description">
+              <%= listing.description %>
+            </p>
+            <i class="fas fa-star"></i>
+          </div>
+
+        </a>
+        <% } %>
+
+    </div>
 
 
 
@@ -45,7 +62,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous"></script>
-
 
 </body>
 
