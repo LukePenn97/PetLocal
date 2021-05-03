@@ -25,7 +25,7 @@ module.exports = (db) => {
         if (queryResult.rows.length === 0) {
           console.log('hit error route');
           return res.render("error", {
-            message: 'No user could be found with the entered email, please try again',
+            message: 'No user found, please login',
             redirect: '/login'
           });
         }

@@ -3,7 +3,10 @@ module.exports = (db) => {
     const userId = request.session.user_id;
 
     if (!userId) { // checking if userId is valid
-      return response.redirect("error");
+      return response.render("error", {
+        message: 'You must be logged in to view this page',
+        redirect: '/login'
+      });
     }
 
     return db.query(`
@@ -13,15 +16,20 @@ module.exports = (db) => {
     `)
       .then((queryResult) => {
         if (queryResult.length === 0) { // checking if userId exists
-          return response.redirect("error");
+          return response.render("error", {
+            message: 'No user found, please login',
+            redirect: '/login'
+          });
         }
 
         request.user = queryResult.rows[0]; // forwarding results to next route
         next(); // moving onto next route
       })
       .catch((err) => {
-        console.log(err);
-        return response.redirect("error");
+        return response.render("error", {
+          message: 'An error occured during login, please try again',
+          redirect: '/login'
+        });
       });
   };
 
