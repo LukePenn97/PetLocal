@@ -33,8 +33,8 @@ module.exports = (db) => {
         const user = queryResult.rows[0];
         console.log('user pass: ', user.password);
 
-        bcrypt.compare(req.body.password, user.password, function(err) {
-          if (err) {
+        bcrypt.compare(req.body.password, user.password, function(err, result) {
+          if (result !== true) {
             return res.render("error", {
               message: 'Password is incorrect, please try again',
               redirect: '/login'
