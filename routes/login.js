@@ -19,11 +19,15 @@ module.exports = (db) => {
       .query(`
         SELECT *
         FROM users
-        WHERE email = '${req.body.email}'`)
+        WHERE email = '${req.body.email}'
+      `)
       .then((queryResult) => {
         if (queryResult.rows.length === 0) {
           console.log('hit error route');
-          return res.redirect("/error"); // user not found;
+          return res.render("error", {
+            message: 'No user could be found with the entered email, please try again',
+            redirect: '/login'
+          });
         }
 
         const user = queryResult.rows[0];
@@ -31,7 +35,10 @@ module.exports = (db) => {
 
         bcrypt.compare(req.body.password, user.password, function(err) {
           if (err) {
-            return res.redirect("/error"); // password incorrect
+            return res.render("error", {
+              message: 'Password is incorrect, please try again',
+              redirect: '/login'
+            });
           }
 
           console.log('req.session.user_id: ', req.session.user_id);
@@ -42,7 +49,10 @@ module.exports = (db) => {
       })
       .catch((err) => {
         console.log('err: ', err);
-        return res.redirect("/error"); // error occured during login
+        return res.render("error", {
+          message: 'An error occured during login, please try again',
+          redirect: '/login'
+        });
       });
   });
 
