@@ -20,7 +20,7 @@ module.exports = (db) => {
     `)
       .then(queryResult => {
         const listings = queryResult.rows;
-        return res.render("my_listings", {listings: listings});
+        return res.render("my_listings", { listings: listings, user: req.user });
       })
       .catch(err => {
         console.log('err: ', err);

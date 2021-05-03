@@ -25,9 +25,19 @@
           <li class="nav-item">
             <a class="nav-link" href="/search">Search</a>
           </li>
-
         </ul>
       </div>
     </div>
+
+    <div>
+      <% if (user) { %>
+        <form class="form-inline" action="/logout" method="POST">
+          <button type="submit" class="btn btn-secondary">Logout</button>
+        </form>
+        <% } else { %>
+          <a type="submit" class="btn btn-light" href="/login">Login</a>
+          <% } %>
+    </div>
+
   </nav>
 </header>

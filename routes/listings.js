@@ -32,7 +32,7 @@ module.exports = (db) => {
       .then(data => {
         // console.log('in listings.js .then');
         const listings = data.rows[0];
-        res.render("listing",{listings: listings});
+        res.render("listing",{ listings: listings, user: req.user});
       })
       .catch(err => {
         // console.log('in listings.js catch');
