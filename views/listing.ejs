@@ -36,11 +36,18 @@
         <p class="date-posted">
           date posted: <%= listings.date_posted%>
         </p>
-        <a
-          href="mailto:<%= listings.email %>?subject=Buy/Sell Listing: <%= listings.title %>&body=You're sending <%= listings.name %> a email to inquire about their listing on Buy/Sell">
-          <button type="button" class="btn btn-secondary">Contact Seller</button>
-        </a>
-        <a href="/favourites/<%= listings.id%>"><i class="fas fa-star"></i></a>
+        <% if (listings.user_id===user.id) {%>
+          <a href="/listings/<%= listings.id %>/edit_listing">
+            <button type="button" class="btn btn-secondary">Edit Listing</button>
+          </a>
+          <% } else { %>
+
+            <a
+              href="mailto:<%= listings.email %>?subject=Buy/Sell Listing: <%= listings.title %>&body=You're sending <%= listings.name %> a email to inquire about their listing on Buy/Sell">
+              <button type="button" class="btn btn-secondary">Contact Seller</button>
+            </a>
+            <% } %>
+              <a href="/favourites/<%= listings.id%>"><i class="fas fa-star"></i></a>
       </div>
     </div>
 
