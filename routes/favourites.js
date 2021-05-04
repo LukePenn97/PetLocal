@@ -44,7 +44,6 @@ module.exports = (db) => {
             user_id,
             listing_id) VALUES ($1, $2)`,
         [userId,req.params.id]);
-
       } else {
         console.log('delete from favourites');
         db.query(`DELETE FROM favourites

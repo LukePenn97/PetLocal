@@ -170,6 +170,46 @@ module.exports = (db) => {
 
   });
 
+  router.post("/:id/mark_as_sold", authMiddleware(db), (req, res) => {
+    // function to delete a listing
+    const soldListing = function() {
+
+      const listingId = req.params.id;
+      const userId = req.user.id;
+
+      console.log("in mark_as_sold function, listingID:",listingId);
+
+      return db.query(`
+        SELECT is_sold FROM listings
+          WHERE listings.id = ${listingId}
+          AND listings.user_id = ${userId}
+      `)
+        .then((result) => {
+
+          let bool = true;
+          if(result.rows[0].is_sold){
+            bool = false;
+          }
+          db.query(`
+          UPDATE listings
+            SET is_sold = ${bool}
+            WHERE listings.id = ${listingId}
+            AND listings.user_id = ${userId}
+          `)
+          res.end();
+        })
+        .catch((err) => {
+          return res.render("error", {
+            message: 'an error occured while attempting to mark your listing as sold:' + err,
+            redirect: '/:id/delete_listing'
+          });
+        });
+    };
+
+    soldListing();
+
+  });
+
 
   return router;
 };
