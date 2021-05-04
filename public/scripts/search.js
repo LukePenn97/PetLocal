@@ -20,7 +20,7 @@ $(() => {
               ${escape(listing.description)}
             </p>
             <a href="#" class="btn btn-secondary">Learn More</a>
-            <a href="/favourites/${listing.id}"><i class="fas fa-star"></i></a>
+            <a class='fav' data-id=${listing.id}><i class="fas fa-star"></i></a>
           </div>
         </div>
       </a>`);

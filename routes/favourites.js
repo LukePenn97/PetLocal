@@ -27,7 +27,7 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/:id", (req, res) => {
+  router.post("/:id", (req, res) => {
     const userId = req.user.id;
     db.query(`
       SELECT id FROM favourites
@@ -52,7 +52,7 @@ module.exports = (db) => {
           AND listing_id = $2`,[userId,req.params.id])
         }
     })
-    .then(()=>res.redirect('back'))
+    .then(()=>res.end())
     .catch((err) => console.log(err));
   });
   return router;
