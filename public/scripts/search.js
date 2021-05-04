@@ -1,4 +1,5 @@
 $(() => {
+<<<<<<< HEAD
   // $("#search-listings-form").on("submit", function(event) {
   //   console.log('form submitted');
   //   event.preventDefault();
@@ -9,3 +10,4 @@ $(() => {
   //   // });
   // }
 });
+
