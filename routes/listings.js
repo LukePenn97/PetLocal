@@ -26,13 +26,14 @@ module.exports = (db) => {
     console.log('req.params.id: ', req.params.id);
 
     db.query(`
-    SELECT *
+    SELECT users.id AS user_id, listings.id AS id, price, title, description, date_posted, image_url, is_sold, users.name, users.email
     FROM listings
     JOIN users ON users.id = listings.user_id
     WHERE listings.id = ${req.params.id};
     `)
       .then((queryResults) => {
         const listings = queryResults.rows[0];
+        console.log("in get :id route, listings =", listings);
         res.render("listing",{
           listings: listings,
           user: req.user
@@ -123,6 +124,34 @@ module.exports = (db) => {
           message: 'there was an error while editing your listing, pease try again...', redirect: '/:id/listing'
         });
       });
+
+  });
+
+  // delete a listing
+  router.post("/:id/delete_listing", (req, res) => {
+    // function to delete a listing
+    const deleteListing = function() {
+
+      const listingId = req.params.id;
+
+      console.log("in delete function, listingID:",listingId);
+
+      return db.query(`
+      DELETE FROM listings
+      WHERE listings.id = ${listingId}
+    `)
+        .then(() => {
+          res.redirect('/my_listings');
+        })
+        .catch((err) => {
+          return res.render("error", {
+            message: 'an error occured while attempting to delete your lsiting',
+            redirect: '/:id/delete_listing'
+          });
+        });
+    };
+
+    deleteListing();
 
   });
 

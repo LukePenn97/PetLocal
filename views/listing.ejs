@@ -40,6 +40,9 @@
           <a href="/listings/<%= listings.id %>/edit_listing">
             <button type="button" class="btn btn-secondary">Edit Listing</button>
           </a>
+          <form action="/listings/<%= listings.id %>/delete_listing" method="POST" id="delete-listing-form">
+            <button type="submit" class="btn btn-secondary">Delete Listing</button>
+          </form>
           <% } else { %>
 
             <a
