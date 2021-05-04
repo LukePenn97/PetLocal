@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const authMiddleware = require("../authMiddleware");
 
 module.exports = (db) => {
   // get homepage
@@ -22,15 +23,19 @@ module.exports = (db) => {
   });
 
   // get listing by id
-  router.get("/:id", (req, res) => {
+  router.get("/:id", authMiddleware(db), (req, res) => {
     console.log('req.params.id: ', req.params.id);
 
+    console.log('req.user', req.user);
+
+    const listingId = req.params.id;
+
     db.query(`
-    SELECT users.id AS user_id, listings.id AS id, price, title, description, date_posted, image_url, is_sold, users.name, users.email
-    FROM listings
-    JOIN users ON users.id = listings.user_id
-    WHERE listings.id = ${req.params.id};
-    `)
+      SELECT users.id AS user_id, listings.id AS id, price, title, description, date_posted, image_url, is_sold, users.name, users.email
+      FROM listings
+      JOIN users ON users.id = listings.user_id
+      WHERE listings.id = ${listingId};
+      `)
       .then((queryResults) => {
         const listings = queryResults.rows[0];
         console.log("in get :id route, listings =", listings);
@@ -47,18 +52,26 @@ module.exports = (db) => {
   });
 
   // get listing by id to edit
-  router.get("/:id/edit_listing", (req, res) => {
-
+  router.get("/:id/edit_listing", authMiddleware(db), (req, res) => {
     const listingId = req.params.id;
+    const userId = req.user.id;
 
     db.query(`
-    SELECT *
-    FROM listings
-    WHERE listings.id = ${listingId};
-    `)
+        SELECT *
+        FROM listings
+        WHERE listings.id = ${listingId}
+        AND listings.user_id = ${userId};
+      `)
       .then((queryResults) => {
         const listing = queryResults.rows[0];
-        res.render("edit_listing",{
+
+        if (!listing) {
+          return res.render("error", {
+            message: 'You do not have access to edit this listing', redirect: '/'
+          });
+        }
+
+        return res.render("edit_listing",{
           listing: listing,
           user: req.user
         });
@@ -72,7 +85,7 @@ module.exports = (db) => {
 
 
   // edit a listing
-  router.post("/:id/edit_listing", (req, res) => {
+  router.post("/:id/edit_listing", authMiddleware(db), (req, res) => {
 
     const userId = req.user.id;
 
@@ -82,15 +95,15 @@ module.exports = (db) => {
       const listingId = req.params.id;
 
       return db.query(`
-      UPDATE listings
-      SET price = $1,
-          image_url = $2,
-          title = $3,
-          description = $4
-      WHERE listings.id = ${listingId}
-      AND listings.user_id = ${userId}
-      RETURNING *;
-    `,[
+          UPDATE listings
+          SET price = $1,
+              image_url = $2,
+              title = $3,
+              description = $4
+          WHERE listings.id = ${listingId}
+          AND listings.user_id = ${userId}
+          RETURNING *;
+        `,[
         listing.price,
         listing.image_url,
         listing.title,
@@ -128,18 +141,20 @@ module.exports = (db) => {
   });
 
   // delete a listing
-  router.post("/:id/delete_listing", (req, res) => {
+  router.post("/:id/delete_listing", authMiddleware(db), (req, res) => {
     // function to delete a listing
     const deleteListing = function() {
 
       const listingId = req.params.id;
+      const userId = req.user.id;
 
-      console.log("in delete function, listingID:",listingId);
+      // console.log("in delete function, listingID:",listingId);
 
       return db.query(`
-      DELETE FROM listings
-      WHERE listings.id = ${listingId}
-    `)
+        DELETE FROM listings
+        WHERE listings.id = ${listingId}
+        AND listings.user_id = ${userId};
+      `)
         .then(() => {
           res.redirect('/my_listings');
         })
