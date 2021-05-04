@@ -23,15 +23,6 @@ module.exports = (db) => {
   // get specific item
   router.get("/:id", (req, res) => {
     console.log('req.params.id: ', req.params.id);
-<<<<<<< HEAD
-    db.query(`SELECT * FROM listings
-              JOIN users ON user_id = users.id
-              WHERE listings.id = $1`,[req.params.id])
-      .then(data => {
-        console.log('data rows[0] for listing',data.rows[0]);
-        const listings = data.rows[0];
-        res.render("listing",{listings: listings});
-=======
 
     db.query(`
     SELECT *
@@ -41,7 +32,6 @@ module.exports = (db) => {
       .then((queryResults) => {
         const listings = queryResults.rows[0];
         res.render("listing",{ listings: listings, user: req.user});
->>>>>>> 1bd0a70e078b612aad11a08ee217b3cf448a62fd
       })
       .catch((err) => {
         return res.render("error", {
