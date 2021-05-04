@@ -55,7 +55,7 @@ const logoutRoutes = require("./routes/logout");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/listings", authMiddleware(db), listingsRoutes(db));
+app.use("/listings", listingsRoutes(db));
 app.use("/search", authMiddleware(db), searchRoutes(db));
 app.use("/new_item", authMiddleware(db), newItemRoutes(db));
 app.use("/favourites", authMiddleware(db), favouritesRoutes(db));
