@@ -27,7 +27,8 @@ module.exports = (db) => {
     db.query(`
     SELECT *
     FROM listings
-    WHERE id = ${req.params.id};
+    JOIN users ON users.id = listings.user_id
+    WHERE listings.id = ${req.params.id};
     `)
       .then((queryResults) => {
         const listings = queryResults.rows[0];

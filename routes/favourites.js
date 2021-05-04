@@ -4,7 +4,7 @@ const router = express.Router();
 module.exports = (db) => {
   router.get("/", (req, res) => {
     const userId = req.user.id;
-    
+
     db.query(`
       SELECT *
       FROM favourites
@@ -36,22 +36,22 @@ module.exports = (db) => {
         WHERE user_id = $1
         AND listing_id = $2
         )`,
-      [userId,req.params.id]).then((val) => {
-        console.log("Favourite exists: ", val.rows[0]);
-        if (!val.rows[0]) {
-          console.log('add to favourites id:', req.params.id);
-          db.query(`INSERT INTO favourites (
+    [userId,req.params.id]).then((val) => {
+      console.log("Favourite exists: ", val.rows[0]);
+      if (!val.rows[0]) {
+        console.log('add to favourites id:', req.params.id);
+        db.query(`INSERT INTO favourites (
             user_id,
             listing_id) VALUES ($1, $2)`,
-          [userId,req.params.id])
+        [userId,req.params.id]);
 
-        } else {
-          console.log('delete from favourites');
-          db.query(`DELETE FROM favourites
+      } else {
+        console.log('delete from favourites');
+        db.query(`DELETE FROM favourites
           WHERE user_id = $1
-          AND listing_id = $2`,[userId,req.params.id])
-        }
-        
+          AND listing_id = $2`,[userId,req.params.id]);
+      }
+
     }).catch((err) => console.log(err)).then(() => res.redirect('back'));
   });
   return router;
