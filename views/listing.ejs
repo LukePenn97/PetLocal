@@ -16,7 +16,7 @@
 </head>
 
 <body>
-  
+
   <%- include('partials/_navbar') %>
 
     <div class="card" style="width: 18rem;">
@@ -36,9 +36,10 @@
         <p class="date-posted">
           date posted: <%= listings.date_posted%>
         </p>
-        <p class="contact">
-          contact seller: <%= listings.email%>
-        </p>
+        <a
+          href="mailto:<%= listings.email %>?subject=Buy/Sell Listing: <%= listings.title %>&body=You're sending <%= listings.name %> a email to inquire about their listing on Buy/Sell">
+          <button type="button" class="btn btn-secondary">Contact Seller</button>
+        </a>
         <a href="/favourites/<%= listings.id%>"><i class="fas fa-star"></i></a>
       </div>
     </div>
