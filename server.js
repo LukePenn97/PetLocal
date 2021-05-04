@@ -53,8 +53,6 @@ const loginRoutes = require("./routes/login");
 const errorRoutes = require("./routes/error");
 const logoutRoutes = require("./routes/logout");
 
-console.log('in server.js');
-
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/listings", authMiddleware(db), listingsRoutes(db));
