@@ -51,8 +51,9 @@ module.exports = (db) => {
           WHERE user_id = $1
           AND listing_id = $2`,[userId,req.params.id])
         }
-        
-    }).catch((err) => console.log(err)).then(() => res.redirect('back'));
+    })
+    .then(()=>res.redirect('back'))
+    .catch((err) => console.log(err));
   });
   return router;
 };

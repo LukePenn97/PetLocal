@@ -10,17 +10,32 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     console.log('req.body = ',req.body);
     let queryString = `SELECT * FROM listings`;
-    if (req.body.minPrice && req.body.maxPrice) {
-      queryString += ` WHERE price >= ${req.body.minPrice * 100} AND price <= ${req.body.maxPrice * 100}`;
-    } else if (req.body.minPrice) {
-      queryString += ` WHERE price >= ${req.body.minPrice * 100}`;
-    } else if (req.body.maxPrice) {
-      queryString += ` WHERE price <= ${req.body.maxPrice * 100}`;
+    let queryPlus = '';
+    if (req.body.minPrice) {
+      queryPlus += ` WHERE price >= ${req.body.minPrice * 100}`;
     }
+    if (req.body.maxPrice) {
+      if (queryPlus) {
+        queryPlus += ` AND price <= ${req.body.maxPrice * 100}`;
+      }
+      if (!queryPlus) {
+        queryPlus += ` WHERE price <= ${req.body.maxPrice * 100}`;
+      }
+    }
+    if (req.body.keywords) {
+      if (queryPlus) {
+        queryPlus += ` AND title LIKE '%${req.body.keywords}%'`;
+      }
+      if (!queryPlus) {
+        queryPlus += ` WHERE title LIKE '%${req.body.keywords}%'`;
+      }
+    }
+    console.log('queryPlus:', queryPlus)
+    queryString += queryPlus;
     db.query(queryString)
       .then(data => {
         const listings = data.rows;
-        res.render("search", { listings: listings, user: request.user});
+        res.json(listings);
       })
       .catch(err => {
         res
