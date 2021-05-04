@@ -4,7 +4,6 @@ const router = express.Router();
 module.exports = (db) => {
   router.get("/", (req, res) => {
     const userId = req.user.id;
-    console.log('userid: ', userId);
 
     db.query(`
       SELECT *
@@ -26,6 +25,34 @@ module.exports = (db) => {
           message: 'An error occured while retrieving your favourties, please try again', redirect: '/favourites'
         });
       });
+  });
+
+  router.get("/:id", (req, res) => {
+    const userId = req.user.id;
+    db.query(`
+      SELECT id FROM favourites
+      WHERE EXISTS(
+        SELECT * FROM favourites
+        WHERE user_id = $1
+        AND listing_id = $2
+        )`,
+    [userId,req.params.id]).then((val) => {
+      console.log("Favourite exists: ", val.rows[0]);
+      if (!val.rows[0]) {
+        console.log('add to favourites id:', req.params.id);
+        db.query(`INSERT INTO favourites (
+            user_id,
+            listing_id) VALUES ($1, $2)`,
+        [userId,req.params.id]);
+
+      } else {
+        console.log('delete from favourites');
+        db.query(`DELETE FROM favourites
+          WHERE user_id = $1
+          AND listing_id = $2`,[userId,req.params.id]);
+      }
+
+    }).catch((err) => console.log(err)).then(() => res.redirect('back'));
   });
   return router;
 };

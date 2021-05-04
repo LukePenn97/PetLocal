@@ -30,11 +30,18 @@
         <p class="item-description">
           <%= listings.description%>
         </p>
+        <i class="fas fa-star"></i>
+        <p class="posted-by">
+          posted by: <%= listings.name%>
+        </p>
+        <p class="date-posted">
+          date posted: <%= listings.date_posted%>
+        </p>
         <a
           href="mailto:<%= listings.email %>?subject=Buy/Sell Listing: <%= listings.title %>&body=You're sending <%= listings.name %> a email to inquire about their listing on Buy/Sell">
           <button type="button" class="btn btn-secondary">Contact Seller</button>
         </a>
-        <i class="fas fa-star"></i>
+        <a href="/favourites/<%= listings.id%>"><i class="fas fa-star"></i></a>
       </div>
     </div>
 
