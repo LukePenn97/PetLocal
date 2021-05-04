@@ -19,7 +19,8 @@ module.exports = (db) => {
           return db.query(`
             SELECT *
             FROM listings
-            ORDER BY listings.id DESC;
+            ORDER BY listings.id DESC
+            LIMIT 6;
           `)
             .then((queryResults) => {
               const listings = queryResults.rows;
@@ -44,7 +45,8 @@ module.exports = (db) => {
         .query(`
           SELECT *
           FROM listings
-          ORDER BY listings.id DESC;
+          ORDER BY listings.id DESC
+          LIMIT 6;
        `)
         .then((queryResults) => {
           const listings = queryResults.rows;
@@ -61,30 +63,6 @@ module.exports = (db) => {
           });
         });
     }
-  });
-
-  // get specific item
-  router.get("/:id", (req, res) => {
-    console.log('req.params.id: ', req.params.id);
-
-    db.query(`
-    SELECT *
-    FROM listings
-    WHERE id = ${req.params.id};
-    `)
-      .then((queryResults) => {
-        const listings = queryResults.rows[0];
-        res.render("listing",{
-          listings: listings,
-          user: req.user
-        });
-      })
-      .catch((err) => {
-        return res.render("error", {
-          message: 'An error occured while retrieving the listing, please try again',
-          redirect: '/'
-        });
-      });
   });
 
   return router;

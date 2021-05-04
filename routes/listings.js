@@ -6,20 +6,63 @@ module.exports = (db) => {
   // get homepage
   router.get("/", (req, res) => {
 
-    return db
-      .query(`
-        SELECT *
-        FROM listings;
-      `)
-      .then((queryResults) => {
-        const listings = queryResults.rows;
-        res.json(listings);
-      })
-      .catch((err) => {
-        return res.render("error", {
-          message: 'An error occured while retrieving the listings, please try again', redirect: '/'
+    const userId = req.session.user_id;
+
+    if (userId) {
+      return db
+        .query(`
+          SELECT *
+          FROM users
+          WHERE users.id = '${userId}';
+        `)
+        .then((userQuery) => {
+          const userRows = userQuery.rows[0];
+
+          return db.query(`
+            SELECT *
+            FROM listings
+            ORDER BY listings.id DESC;
+          `)
+            .then((queryResults) => {
+              const listings = queryResults.rows;
+              const user = userRows.id;
+
+              return res.render("listings", {
+                listings: listings,
+                user: user
+              });
+            })
+            .catch((err) => {
+              return res.render("error", {
+                message: 'An error occured while retrieving the listings, please try again',
+                redirect: '/'
+              });
+            });
         });
-      });
+    }
+
+    if (!userId) {
+      return db
+        .query(`
+          SELECT *
+          FROM listings
+          ORDER BY listings.id DESC;
+       `)
+        .then((queryResults) => {
+          const listings = queryResults.rows;
+
+          return res.render("listings", {
+            listings: listings,
+            user: req.user
+          });
+        })
+        .catch((err) => {
+          return res.render("error", {
+            message: 'An error occured while retrieving the listings, please try again',
+            redirect: '/'
+          });
+        });
+    }
   });
 
   // get listing by id
