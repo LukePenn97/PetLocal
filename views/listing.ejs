@@ -30,6 +30,10 @@
         <p class="item-description">
           <%= listings.description%>
         </p>
+        <a
+          href="mailto:<%= listings.email %>?subject=Buy/Sell Listing: <%= listings.title %>&body=You're sending <%= listings.name %> a email to inquire about their listing on Buy/Sell">
+          <button type="button" class="btn btn-secondary">Contact Seller</button>
+        </a>
         <i class="fas fa-star"></i>
       </div>
     </div>

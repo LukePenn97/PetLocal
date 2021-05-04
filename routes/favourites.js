@@ -4,6 +4,7 @@ const router = express.Router();
 module.exports = (db) => {
   router.get("/", (req, res) => {
     const userId = req.user.id;
+    console.log('userid: ', userId);
 
     db.query(`
       SELECT *
