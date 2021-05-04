@@ -24,14 +24,15 @@ module.exports = (db) => {
     }
     if (req.body.keywords) {
       if (queryPlus) {
-        queryPlus += ` AND title LIKE '%${req.body.keywords}%'`;
+        queryPlus += ` AND (title LIKE '%${req.body.keywords}%' OR description LIKE '%${req.body.keywords}%')`;
       }
       if (!queryPlus) {
-        queryPlus += ` WHERE title LIKE '%${req.body.keywords}%'`;
+        queryPlus += ` WHERE (title LIKE '%${req.body.keywords}%' OR description LIKE '%${req.body.keywords}%')`;
       }
     }
     console.log('queryPlus:', queryPlus)
     queryString += queryPlus;
+    console.log('queryString:', queryString)
     db.query(queryString)
       .then(data => {
         const listings = data.rows;
