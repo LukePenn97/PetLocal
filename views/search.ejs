@@ -37,28 +37,7 @@
     </form>
 
     <main class="container">
-      <section id="searched_listings">
-        <% if (listings) { %>
-          <% for (const listing of listings) { %>
-
-            <div class="card" style="width: 18rem;">
-              <img class="card-img-top" src='<%= listing.image_url%>' alt="Dog pic">
-              <div class="card-body">
-                <h5 class="item-title">
-                  <%= listing.title%>
-                </h5>
-                <h6 class="item-price">$<%= listing.price / 100%>
-                </h6>
-                <p class="item-description">
-                  <%= listing.description%>
-                </p>
-                <a href="#" class="btn btn-secondary">Learn More</a>
-                <i class="fas fa-star"></i>
-              </div>
-            </div>
-            <% } %>
-              <% } %>
-      </section>
+      <section id="searched_listings"></section>
     </main>
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
