@@ -29,7 +29,16 @@
         <p class="item-description">
           <%= listings.description%>
         </p>
-        <i class="fas fa-star"></i>
+        <p class="posted-by">
+          posted by: <%= listings.name%>
+        </p>
+        <p class="date-posted">
+          date posted: <%= listings.date_posted%>
+        </p>
+        <p class="contact">
+          contact seller: <%= listings.email%>
+        </p>
+        <a href="/favourites/<%= listings.id%>"><i class="fas fa-star"></i></a>
       </div>
     </div>
 

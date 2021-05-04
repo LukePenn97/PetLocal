@@ -22,9 +22,11 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
     // console.log('in listings.js router');
     console.log('req.params.id: ', req.params.id);
-    db.query(`SELECT * FROM listings WHERE id = ${req.params.id};`)
+    db.query(`SELECT * FROM listings
+              JOIN users ON user_id = users.id
+              WHERE listings.id = $1`,[req.params.id])
       .then(data => {
-        // console.log('in listings.js .then');
+        console.log('data rows[0] for listing',data.rows[0]);
         const listings = data.rows[0];
         res.render("listing",{listings: listings});
       })
