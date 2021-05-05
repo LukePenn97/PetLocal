@@ -32,26 +32,33 @@
       <div class="form-wrapper">
         <form action="/new_item/" method="POST" id="add-new-item-form">
 
-          <div class="row mb-3 form-group">
-            <label for="listing-title" class="form-label">Title</label>
-            <input name="title" type="text" class="form-control" id="listing-title" placeholder="Title">
+          <div class="row mb-3">
+            <label for="listing-title" class="col-sm-2 col-form-label">Title</label>
+            <div class="col-sm-10">
+              <input name="title" type="text" class="form-control" id="listing-title" placeholder="Title">
+            </div>
           </div>
 
-          <div class="row mb-3 form-group">
-            <span class="item-description">Description</span>
-            <textarea name="description" class="form-control" id="listing-description" placeholder="Description">
-
-          </textarea>
+          <div class="row mb-3">
+            <label for="listing-description" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+              <textarea name="description" class="form-control" id="listing-description" placeholder="Description"
+                rows="3"></textarea>
+            </div>
           </div>
 
-          <div class="row mb-3 form-group">
-            <label for="listing-url" class="form-label">Image URL</label>
-            <input name="image_url" type="text" class="form-control" id="listing-url" placeholder="Image URL">
+          <div class="row mb-3">
+            <label for="listing-url" class="col-sm-2 col-form-label">Image URL</label>
+            <div class="col-sm-10">
+              <input name="image_url" type="text" class="form-control" id="listing-url" placeholder="Image URL">
+            </div>
           </div>
 
-          <div class="row mb-3 form-group">
-            <span class="item-price">Price</span>
-            <input name="price" class="form-control" id="listing-price" placeholder="Price">
+          <div class="row mb-3">
+            <label for="listing-price" class="col-sm-2 col-form-label">Price</label>
+            <div class="col-sm-10">
+              <input name="price" class="form-control" id="listing-price" placeholder="Price">
+            </div>
           </div>
 
           <button type="submit" class="btn btn-secondary" id="add-new-listing-button">Add New Listing</button>
