@@ -10,3 +10,37 @@
     height: 100%;
   }
 }
+
+a:hover, a:visited, a:link, a:active {
+  text-decoration: none;
+  color: black;
+}
+
+.card-body {
+  .listing-title {
+    font-weight: 800;
+  }
+
+  .listing-price {
+    font-weight: 700;
+  }
+}
+
+.card-bottom {
+  padding: 0px 16px 16px 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fav {
+  .fa-heart {
+    color: gray;
+    font-size: 25px;
+  }
+
+  .fa-heart:hover {
+    color: red;
+  }
+}
