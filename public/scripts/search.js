@@ -1,4 +1,5 @@
 $(() => {
+
   const escape = function(str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
@@ -29,7 +30,7 @@ $(() => {
           <button type="button" class="btn btn-secondary">View Listing</button>
         </a>
         <a class="fav" data-id="${listing.id}">
-          <i class="fas fa-heart"></i>
+          <i class="fas fa-heart" id="${listing.id}"></i>
         </a>
       </div>
 
@@ -50,7 +51,14 @@ $(() => {
     $.ajax("/search", {type: "POST", data: parameters})
       .then((listings)=>{
         renderListings(listings);
-
+        $.ajax(`/favourites/is_fav`, {type: "GET"})
+          .then((rows) => {
+            for (const fav of rows) {
+              console.log("fav.listing_id:",fav.listing_id);
+              $(`#${fav.listing_id}`).css("color","#c81d25");
+            }
+          })
+          .catch((err)=>console.log(err));
       })
       .catch((err)=>console.log(err));
   });
