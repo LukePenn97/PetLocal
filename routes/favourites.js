@@ -43,16 +43,31 @@ module.exports = (db) => {
         db.query(`INSERT INTO favourites (
             user_id,
             listing_id) VALUES ($1, $2)`,
-        [userId,req.params.id]);
+        [userId,req.params.id])
+          .then(()=>res.send(true))
       } else {
         console.log('delete from favourites');
         db.query(`DELETE FROM favourites
           WHERE user_id = $1
-          AND listing_id = $2`,[userId,req.params.id])
-        }
+          AND listing_id = $2`,
+        [userId,req.params.id])
+          .then(()=>res.send(false))
+      }
     })
-    .then(()=>res.end())
-    .catch((err) => console.log(err));
+    
+      .catch((err) => console.log(err));
+  });
+
+  router.get("/is_fav", (req, res) => {
+    const userId = req.user.id;
+    db.query(`
+      SELECT listing_id FROM favourites
+      WHERE user_id = ${userId}
+    `)
+      .then((result)=>{
+        res.send(result.rows);
+      })
+      .catch((err)=>res.send(err));
   });
   return router;
 };
