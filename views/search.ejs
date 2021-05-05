@@ -27,22 +27,22 @@
 
   <%- include('partials/_navbar') %>
 
-    <form action="/search" method="POST" id="search-listings-form">
-      <div class="mb-3">
-        <label for="min-price" class="form-label">Minimum Price</label>
-        <input type="text" class="form-control" id="min-price" placeholder="Minimum Price" name='minPrice'>
-
-        <label for="max-price" class="form-label">Maximum Price</label>
-        <input type="text" class="form-control" id="max-price" placeholder="Maximum Price" name='maxPrice'>
-
-        <label for="keywords" class="form-label">Keywords</label>
-        <input type="text" class="form-control" id="keywords" placeholder="Keywords" name='keywords'>
-        <input type="submit" class="btn btn-secondary" id="search-listings-button">Search</input>
-      </div>
-
-    </form>
-
     <main class="container">
+      <form action="/search" method="POST" id="search-listings-form">
+        <div class="mb-3">
+          <label for="min-price" class="form-label">Minimum Price</label>
+          <input type="text" class="form-control" id="min-price" placeholder="Minimum Price" name='minPrice'>
+
+          <label for="max-price" class="form-label">Maximum Price</label>
+          <input type="text" class="form-control" id="max-price" placeholder="Maximum Price" name='maxPrice'>
+
+          <label for="keywords" class="form-label">Keywords</label>
+          <input type="text" class="form-control" id="keywords" placeholder="Keywords" name='keywords'>
+          <input type="submit" class="btn btn-secondary" id="search-listings-button">Search</input>
+        </div>
+
+      </form>
+
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="searched-listings">
 
       </div>
