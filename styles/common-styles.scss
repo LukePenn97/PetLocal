@@ -32,6 +32,11 @@ a:hover, a:visited, a:link, a:active {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  .btn {
+    font-weight: 400;
+    text-transform: uppercase;
+  }
 }
 
 .fav {
@@ -41,6 +46,6 @@ a:hover, a:visited, a:link, a:active {
   }
 
   .fa-heart:hover {
-    color: red;
+    color: #c81d25;
   }
 }

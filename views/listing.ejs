@@ -27,7 +27,8 @@
         <h5 class="item-title">
           <%= listings.title%>
         </h5>
-        <h6 class="item-price">$<%= listings.price / 100%>
+        <h6 class="item-price">
+          $ <%= listings.price / 100%>
         </h6>
         <p class="item-description">
           <%= listings.description%>
@@ -42,7 +43,7 @@
           <a href="/listings/<%= listings.id %>/edit_listing">
             <button type="button" class="btn btn-secondary">Edit Listing</button>
           </a>
-          <a class="mark_as_sold" data-id=<%= listings.id%>>
+          <a class="mark_as_sold" data-id=<%=listings.id%>>
             <button type="button" class="btn btn-secondary">Mark As Sold</button>
           </a>
           <form action="/listings/<%= listings.id %>/delete_listing" method="POST" id="delete-listing-form">
