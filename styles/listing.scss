@@ -1,0 +1,10 @@
+.label-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 20px;
+
+  label {
+    font-weight: 500;
+  }
+}

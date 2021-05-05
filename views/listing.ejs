@@ -43,12 +43,25 @@
           <p class="listing-description">
             <%= listings.description%>
           </p>
-          <p class="listing-posted-by">
-            posted by: <%= listings.name%>
-          </p>
-          <p class="listing-date-posted">
-            date posted: <%= listings.date_posted%>
-          </p>
+
+          <div class="label-info">
+
+            <div class="posted-by">
+              <label for="listing-posted-by">Posted By:</label>
+              <p class="listing-posted-by">
+                <%= listings.name%>
+              </p>
+            </div>
+
+            <div class="date-possted">
+              <label for="listing-date-posted">Date Posted:</label>
+              <p class="listing-date-posted">
+                <%= listings.date_posted%>
+              </p>
+            </div>
+
+          </div>
+
         </div>
 
         <div class="card-bottom">
@@ -57,6 +70,7 @@
             <a href="/listings/<%= listings.id %>/edit_listing">
               <button type="button" class="btn btn-secondary">Edit Listing</button>
             </a>
+
             <a class="mark_as_sold" data-id="<%=listings.id%>">
               <button type="button" class="btn btn-secondary">Mark As Sold</button>
             </a>
