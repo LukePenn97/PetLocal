@@ -7,7 +7,7 @@ $(() => {
       if (isFav) {
         $(`#${id}`).css("color","#c81d25");
       } else {
-        $(`#${id}`).css("color","#c81d25");
+        $(`#${id}`).css("color","grey");
       }
     }
 
