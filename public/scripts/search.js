@@ -9,7 +9,6 @@ $(() => {
     return $(`
   <div class="col">
     <div class="card h-100">
-      <a href="/listings/${listing.id}">
         <div class="img-div">
           <img src="${escape(listing.image_url)}" class="card-img-top img-fluid">
         </div>
@@ -23,11 +22,17 @@ $(() => {
           <p class="listing-description">
             ${escape(listing.description)}
           </p>
-          <a class="favo" data-id="${listing.id}">
-            <i class="fas fa-star"></i>
-          </a>
         </div>
-      </a>
+
+        <div class="card-bottom">
+        <a href="/listings/${listing.id}">
+          <button type="button" class="btn btn-secondary">View Listing</button>
+        </a>
+        <a class="fav" data-id="${listing.id}">
+          <i class="fas fa-heart"></i>
+        </a>
+      </div>
+
     </div>
   </div>`);
   };

@@ -31,25 +31,31 @@
         <% for (const favourite of favourites) { %>
           <div class="col">
             <div class="card h-100">
-              <a href="/listings/<%= favourite.listing_id %>">
-                <div class="img-div">
-                  <img src="<%= favourite.image_url %>" class="card-img-top img-fluid">
-                </div>
-                <div class="card-body">
-                  <h5 class="listing-title">
-                    <%= favourite.title %>
-                  </h5>
-                  <h6 class="listing-price">
-                    <%= favourite.price / 100 %>
-                  </h6>
-                  <p class="listing-description">
-                    <%= favourite.description %>
-                  </p>
-                  <a class="fav" data-id="<%= favourite.listing_id %>">
-                    <i class="fas fa-star"></i>
-                  </a>
-                </div>
-              </a>
+              <div class="img-div">
+                <img src="<%= favourite.image_url %>" class="card-img-top img-fluid">
+              </div>
+              <div class="card-body">
+                <h5 class="listing-title">
+                  <%= favourite.title %>
+                </h5>
+                <h6 class="listing-price">
+                  $ <%= favourite.price / 100 %>
+                </h6>
+                <p class="listing-description">
+                  <%= favourite.description %>
+                </p>
+              </div>
+
+              <div class="card-bottom">
+                <a href="/listings/<%= favourite.listing_id %>">
+                  <button type="button" class="btn btn-secondary">View Listing</button>
+                </a>
+                <a class="fav" data-id="<%= favourite.listing_id %>">
+                  <i class="fas fa-heart"></i>
+                </a>
+              </div>
+
+
             </div>
           </div>
           <% } %>

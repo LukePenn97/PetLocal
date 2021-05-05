@@ -27,24 +27,27 @@
         <% for(const listing of listings) { %>
           <div class="col">
             <div class="card h-100">
-              <a href="/listings/<%= listing.id %>">
-                <div class="img-div">
-                  <img src="<%= listing.image_url %>" class="card-img-top img-fluid">
-                </div>
-                <div class="card-body">
-                  <h5 class="listing-title">
-                    <%= listing.title %>
-                  </h5>
-                  <h6 class="listing-price">
-                    <%= listing.price / 100 %>
-                  </h6>
-                  <p class="listing-description">
-                    <%= listing.description %>
-                  </p>
-                  <a class="favo" data-id="<%= listing.id %>"><i class="fas fa-star"></i>
-                  </a>
-                </div>
-              </a>
+              <div class="img-div">
+                <img src="<%= listing.image_url %>" class="card-img-top img-fluid">
+              </div>
+              <div class="card-body">
+                <h5 class="listing-title">
+                  <%= listing.title %>
+                </h5>
+                <h6 class="listing-price">
+                  $ <%= listing.price / 100 %>
+                </h6>
+                <p class="listing-description">
+                  <%= listing.description %>
+                </p>
+              </div>
+
+              <div class="card-bottom">
+                <a href="/listings/<%= listing.id %>">
+                  <button type="button" class="btn btn-secondary">View Listing</button>
+                </a>
+              </div>
+
             </div>
           </div>
           <% } %>
