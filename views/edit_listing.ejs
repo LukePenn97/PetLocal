@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- CSS -->
+  <link rel="stylesheet" href="/styles/common-styles.css" type="text/css" />
   <link rel="stylesheet" href="/styles/nav-bar.css" type="text/css" />
 
   <!-- Bootstrap CSS -->
@@ -22,40 +23,43 @@
 
   <%- include('partials/_navbar') %>
 
-    <form action="/listings/<%= listing.id %>/edit_listing" method="POST" id="edit-lsiting-form">
-      <div class="mb-3">
-        <label for="item-title" class="form-label">
-          Title
-        </label>
-        <input name="title" type="text" class="form-control" id="listing-title" value="<%= listing.title %>">
-      </div>
+    <main class="container">
+      <form action="/listings/<%= listing.id %>/edit_listing" method="POST" id="edit-lsiting-form">
+        <div class="mb-3">
+          <label for="item-title" class="form-label">
+            Title
+          </label>
+          <input name="title" type="text" class="form-control" id="listing-title" value="<%= listing.title %>">
+        </div>
 
-      <div class="input-group">
-        <span class="item-description">
-          Description
-        </span>
-        <textarea name="description" class="form-control" id="listing-description"><%= listing.description %></textarea>
-      </div>
+        <div class="input-group">
+          <span class="item-description">
+            Description
+          </span>
+          <textarea name="description" class="form-control"
+            id="listing-description"><%= listing.description %></textarea>
+        </div>
 
-      <div class="mb-3">
-        <label for="item-url" class="form-label">
-          Image URL
-        </label>
-        <input name="image_url" type="text" class="form-control" id="listing-url" value="<%= listing.image_url %>">
-      </div>
+        <div class="mb-3">
+          <label for="item-url" class="form-label">
+            Image URL
+          </label>
+          <input name="image_url" type="text" class="form-control" id="listing-url" value="<%= listing.image_url %>">
+        </div>
 
-      <div class="mb-3">
-        <span class="item-price">
-          Price
-        </span>
-        <input name="price" class="form-control" id="listing-price" value="<%= listing.price %>">
-      </div>
+        <div class="mb-3">
+          <span class="item-price">
+            Price
+          </span>
+          <input name="price" class="form-control" id="listing-price" value="<%= listing.price %>">
+        </div>
 
-      <button type="submit" class="btn btn-secondary" id="edit-listing-button">
-        Save Changes
-      </button>
+        <button type="submit" class="btn btn-secondary" id="edit-listing-button">
+          Save Changes
+        </button>
 
-    </form>
+      </form>
+    </main>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
