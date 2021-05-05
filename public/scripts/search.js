@@ -1,37 +1,43 @@
 $(() => {
-  const escape = function (str) {
+  const escape = function(str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
 
   const createListingElement = function(listing) {
-    return $(
-      `<a href="/listings/${listing.id}">
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src='${escape(listing.image_url)}' alt="Dog pic">
-          <div class="card-body">
-            <h5 class="item-title">
-              ${escape(listing.title)}
-            </h5>
-            <h6 class="item-price">${escape(listing.price / 100)}
-            </h6>
-            <p class="item-description">
-              ${escape(listing.description)}
-            </p>
-            <a href="#" class="btn btn-secondary">Learn More</a>
-            <a class='fav' data-id=${listing.id}><i class="fas fa-star"></i></a>
-          </div>
+    return $(`
+  <div class="col">
+    <div class="card h-100">
+      <a href="/listings/${listing.id}">
+        <div class="img-div">
+          <img src="${escape(listing.image_url)}" class="card-img-top img-fluid">
         </div>
-      </a>`);
-  }
+        <div class="card-body">
+          <h5 class="listing-title">
+            ${escape(listing.title)}
+          </h5>
+          <h6 class="listing-price">
+            ${escape(listing.price / 100)}
+          </h6>
+          <p class="listing-description">
+            ${escape(listing.description)}
+          </p>
+          <a class="favo" data-id="${listing.id}">
+            <i class="fas fa-star"></i>
+          </a>
+        </div>
+      </a>
+    </div>
+  </div>`);
+  };
 
   const renderListings = function(listings) {
-    $("#searched_listings").empty();
-    $.each(listings, function(index){
-      $("#searched_listings").prepend(createListingElement(listings[index]));
-    })
-  }
+    $("#searched-listings").empty();
+    $.each(listings, function(index) {
+      $("#searched-listings").prepend(createListingElement(listings[index]));
+    });
+  };
 
   $("#search-listings-form").submit(function(event) {
     event.preventDefault();
@@ -39,7 +45,7 @@ $(() => {
     $.ajax("/search", {type: "POST", data: parameters})
       .then((listings)=>{
         renderListings(listings);
-        
+
       })
       .catch((err)=>console.log(err));
   });

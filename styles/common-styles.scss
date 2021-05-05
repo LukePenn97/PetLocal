@@ -1,0 +1,12 @@
+.img-div {
+  height: 250px;
+  position: relative;
+
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    height: 100%;
+  }
+}
