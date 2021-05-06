@@ -18,7 +18,7 @@ $(() => {
             ${escape(listing.title)}
           </h5>
           <h6 class="listing-price">
-            ${escape(listing.price / 100)}
+            $${escape(listing.price)}
           </h6>
           <p class="listing-description">
             ${escape(listing.description)}
@@ -57,24 +57,21 @@ $(() => {
         $.ajax(`/favourites/is_fav`, {type: "GET"})
           .then((rows) => {
             for (const fav of rows) {
-              console.log("fav.listing_id:",fav.listing_id);
               $(`#${fav.listing_id}`).css("color","#c81d25");
             }
           })
-          .catch((err)=>console.log(err));
+          .catch((err) => console.log(err));
       })
-      .catch((err)=>console.log(err));
+      .catch((err) => console.log(err));
 
-      $.ajax(`/listings/is_sold`, {type: "GET"})
-        .then((rows) => {
-          console.log(rows)
-          for (const listings of rows) {
-            // console.log("listings.listing_id:",listings.listing_id);
-            $(`#sold-${listings.id}`).css("display","flex");
-            $(`#view-listing-${listings.id}`).css("display","none");
-          }
-        })
-        .catch((err)=>console.log(err));
+    $.ajax(`/listings/is_sold`, {type: "GET"})
+      .then((rows) => {
+        for (const listings of rows) {
+          $(`#sold-${listings.id}`).css("display","flex");
+          $(`#view-listing-${listings.id}`).css("display","none");
+        }
+      })
+      .catch((err) => console.log(err));
   });
 });
 
