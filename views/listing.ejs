@@ -17,6 +17,7 @@
   <!-- Font Awesome BootstrapCDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
+  <!-- Scripts -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/favourite_button.js"></script>
   <script type="text/javascript" src="/scripts/get_favs.js"></script>
@@ -32,16 +33,16 @@
     <main class="container">
 
       <div class="card h-100">
-        <img class="card-img-top" src='<%= listings.image_url%>'>
+        <img class="card-img-top" src='<%= listings.image_url %>'>
         <div class="card-body">
           <h5 class="listing-title">
-            <%= listings.title%>
+            <%= listings.title %>
           </h5>
           <h6 class="listing-price">
-            $ <%= listings.price / 100%>
+            $ <%= listings.price / 100 %>
           </h6>
           <p class="listing-description">
-            <%= listings.description%>
+            <%= listings.description %>
           </p>
 
           <div class="label-info">
@@ -49,14 +50,14 @@
             <div class="posted-by">
               <label for="listing-posted-by">Posted By:</label>
               <p class="listing-posted-by">
-                <%= listings.name%>
+                <%= listings.name %>
               </p>
             </div>
 
             <div class="date-possted">
               <label for="listing-date-posted">Date Posted:</label>
               <p class="listing-date-posted">
-                <%= listings.date_posted%>
+                <%= listings.date_posted %>
               </p>
             </div>
 
