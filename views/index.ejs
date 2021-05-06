@@ -13,7 +13,6 @@
   <link rel="stylesheet" href="/styles/nav-bar.css" type="text/css" />
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
   <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
-
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Roboto:ital,wght@1,500&display=swap"
@@ -61,8 +60,9 @@
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
         <% for (const listing of listings) { %>
+          
           <div class="col">
-            <div class="card h-100">
+            <div class="card h-100 hvr-grow-shadow">
               <div class="img-div">
                 <img src="<%= listing.image_url %>" class="card-img-top img-fluid">
               </div>

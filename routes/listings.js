@@ -83,7 +83,7 @@ module.exports = (db) => {
     console.log('req.user', req.user);
 
     const listingId = req.params.id;
-
+    
     db.query(`
       SELECT users.id AS user_id, listings.id AS id, price, title, description, date_posted, image_url, is_sold, users.name, users.email
       FROM listings

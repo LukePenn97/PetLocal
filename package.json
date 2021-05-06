@@ -22,10 +22,8 @@
     "morgan": "^1.9.1",
     "node-sass": "^4.12.0",
     "node-sass-middleware": "^0.11.0",
-    "pexels": "^1.2.1",
     "pg": "^8.5.0",
-    "pg-native": "^3.0.0",
-    "require": "^2.4.20"
+    "pg-native": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
