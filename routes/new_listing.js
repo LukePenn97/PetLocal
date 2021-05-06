@@ -3,7 +3,7 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    res.render("new_item", {
+    res.render("new_listing", {
       user: req.user
     });
   });
@@ -37,7 +37,8 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     if (!req.body.price || !req.body.image_url || !req.body.title || !req.body.description) {
       return res.render("error", {
-        message: 'missing fields, please try again with all required fields filled out', redirect: '/new_item'
+        message: 'missing fields, please try again with all required fields filled out',
+        redirect: '/new_listing'
       });
     }
 
@@ -49,7 +50,8 @@ module.exports = (db) => {
       })
       .catch((err) => {
         return res.render("error", {
-          message: 'there was an error adding your new listing, pease try again...', redirect: '/new_item'
+          message: 'there was an error adding your new listing, pease try again...',
+          redirect: '/new_listing'
         });
       });
   });
