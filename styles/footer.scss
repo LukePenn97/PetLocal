@@ -1,0 +1,21 @@
+footer {
+  height: 150px;
+  padding-top: 40px;
+
+  .copy {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+    .copy-text {
+    margin-bottom: 0px;
+    font-weight: 600;
+    }
+
+    .fa-paw {
+    font-size: 30px;
+    padding-bottom: 10px;
+    color:black;
+    }
+  }
+}

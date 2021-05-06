@@ -1,6 +1,7 @@
 main {
   padding-top: 100px;
   padding-bottom: 120px;
+  min-height: calc(100vh - 150px);
   animation: fadein 1s;
 
   @keyframes fadein {
@@ -30,7 +31,7 @@ main {
   .listing-price {
     font-weight: 700;
   }
-  
+
 }
 
 .card-bottom {
