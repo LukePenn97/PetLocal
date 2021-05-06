@@ -8,3 +8,11 @@
     font-weight: 500;
   }
 }
+
+.mark-as-sold-toast {
+  display: absolute;
+  position: absolute;
+  min-width: 250px;
+  z-index: 1;
+  left: 50%; 
+}

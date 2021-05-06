@@ -11,12 +11,19 @@ $(() => {
       }
     };
 
+
+    
     console.log('mark as sold listingid:',id);
     $.ajax(`/listings/${id}/mark_as_sold`, {type: "POST"})
       .then((isSold)=>{
         if (isSold) {
           setDisplay(isSold, id);
+          $('.toast-body').text('Marked as sold!');
+        } else {
+          $('.toast-body').text('Unmarked as sold!');
+          
         }
+        $('.toast').toast('show');
       })
       .catch((err) => console.log(err));
   });
