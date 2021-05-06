@@ -9,14 +9,13 @@ $(() => {
       } else {
         $(`#${id}`).css("color","grey");
       }
-    }
+    };
 
     console.log('fav button with listingid:',id);
     $.ajax(`/favourites/${id}`, {type: "POST"})
-      .then((isFav)=>{
-        console.log("isFAV:",isFav,id);
+      .then((isFav) => {
         setColor(isFav,id);
       })
-      .catch((err)=>console.log(err));
+      .catch((err) => console.log(err));
   });
 });
