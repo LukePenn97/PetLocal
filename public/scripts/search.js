@@ -9,7 +9,7 @@ $(() => {
   const createListingElement = function(listing) {
     return $(`
   <div class="col">
-    <div class="card h-100">
+    <div class="card h-100 hvr-grow-shadow">
         <div class="img-div">
           <img src="${escape(listing.image_url)}" class="card-img-top img-fluid">
         </div>
