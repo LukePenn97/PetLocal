@@ -1,0 +1,43 @@
+.overlay {
+  position: relative;
+}
+
+
+video {
+  height: auto;
+  vertical-align: middle;
+  width: 100%;
+}
+
+@media (pointer: coarse) and (hover: none) {
+  header {
+    background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+  }
+  header video {
+    display: none;
+  }
+}
+.titles {
+  background: rgba(0,0,0,0);
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  
+}
+.title {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 6vw;
+  margin: 1.5em;
+  opacity: 0.8;
+}
+.subtitle {
+  opacity: 0.6;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  font-size: 2vw;
+
+}
