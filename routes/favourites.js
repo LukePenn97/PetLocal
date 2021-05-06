@@ -37,24 +37,21 @@ module.exports = (db) => {
         AND listing_id = $2
         )`,
     [userId,req.params.id]).then((val) => {
-      console.log("Favourite exists: ", val.rows[0]);
       if (!val.rows[0]) {
-        console.log('add to favourites id:', req.params.id);
         db.query(`INSERT INTO favourites (
             user_id,
             listing_id) VALUES ($1, $2)`,
         [userId,req.params.id])
-          .then(()=>res.send(true))
+          .then(()=>res.send(true));
       } else {
-        console.log('delete from favourites');
         db.query(`DELETE FROM favourites
           WHERE user_id = $1
           AND listing_id = $2`,
         [userId,req.params.id])
-          .then(()=>res.send(false))
+          .then(()=>res.send(false));
       }
     })
-    
+
       .catch((err) => console.log(err));
   });
 

@@ -5,12 +5,7 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-
-    console.log('req.user: ', req.user);
-
     const userId = req.session.user_id;
-
-    console.log('user: ', userId);
 
     return db
       .query(`

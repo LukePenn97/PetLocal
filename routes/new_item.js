@@ -9,9 +9,6 @@ module.exports = (db) => {
   });
 
   const addNewListing = function(listing) {
-
-    console.log('listing: ', listing);
-
     return db
       .query(`
         INSERT INTO listings (user_id,
@@ -30,8 +27,6 @@ module.exports = (db) => {
         new Date().toDateString()
       ])
       .then((queryResult) => {
-        console.log('res.rows in new listing: ', queryResult);
-
         return queryResult.rows[0];
       })
       .catch((err) => {
@@ -40,11 +35,6 @@ module.exports = (db) => {
   };
 
   router.post("/", (req, res) => {
-    console.log('title: ', req.body.title);
-    console.log('desc: ', req.body.description);
-    console.log('img_url: ', req.body.image_url);
-    console.log('price: ', req.body.price);
-
     if (!req.body.price || !req.body.image_url || !req.body.title || !req.body.description) {
       return res.render("error", {
         message: 'missing fields, please try again with all required fields filled out', redirect: '/new_item'
@@ -52,8 +42,6 @@ module.exports = (db) => {
     }
 
     const userId = req.user.id;
-
-    console.log(req.body);
 
     addNewListing({...req.body, userId})
       .then(() => {

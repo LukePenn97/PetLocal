@@ -11,11 +11,7 @@ const app        = express();
 const morgan     = require('morgan');
 const bcrypt     = require('bcrypt');
 const cookieSession = require('cookie-session');
-// const { createClient } = require('pexels');
-// const pexels = createClient('563492ad6f91700001000001ac4e6199d19c425ebbad5e81407718db');
-// pexels.videos.show({ id: 3040808 }).then(video => {
-//   console.log('in pexels.videos.show, video.video_files[0].link = ',video.video_files[0].link);
-// });
+
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');

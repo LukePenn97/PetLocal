@@ -11,10 +11,6 @@ module.exports = (db) => {
 
 
   router.post("/", (req, res) => {
-    console.log('req.body: ', req.body);
-    console.log('email: ', req.body.email);
-    console.log('password: ', req.body.password);
-
     return db
       .query(`
         SELECT *
@@ -23,7 +19,6 @@ module.exports = (db) => {
       `)
       .then((queryResult) => {
         if (queryResult.rows.length === 0) {
-          console.log('hit error route');
           return res.render("error", {
             message: 'No user found, please login',
             redirect: '/login'
@@ -31,7 +26,6 @@ module.exports = (db) => {
         }
 
         const user = queryResult.rows[0];
-        console.log('user pass: ', user.password);
 
         bcrypt.compare(req.body.password, user.password, function(err, result) {
           if (result !== true) {
@@ -41,14 +35,11 @@ module.exports = (db) => {
             });
           }
 
-          console.log('req.session.user_id: ', req.session.user_id);
-
           req.session.user_id = user.id;
           return res.redirect("/");
         });
       })
       .catch((err) => {
-        console.log('err: ', err);
         return res.render("error", {
           message: 'An error occured during login, please try again',
           redirect: '/login'

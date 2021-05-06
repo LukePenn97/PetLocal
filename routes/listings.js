@@ -78,12 +78,8 @@ module.exports = (db) => {
 
   // get listing by id
   router.get("/:id", authMiddleware(db), (req, res) => {
-    console.log('req.params.id: ', req.params.id);
-
-    console.log('req.user', req.user);
-
     const listingId = req.params.id;
-    
+
     db.query(`
       SELECT users.id AS user_id, listings.id AS id, price, title, description, date_posted, image_url, is_sold, users.name, users.email
       FROM listings
@@ -92,7 +88,6 @@ module.exports = (db) => {
       `)
       .then((queryResults) => {
         const listings = queryResults.rows[0];
-        console.log("in get :id route, listings =", listings);
         res.render("listing",{
           listings: listings,
           user: req.user
@@ -164,8 +159,6 @@ module.exports = (db) => {
         listing.description
       ])
         .then((queryResult) => {
-          console.log('res.rows in edit: ', queryResult.rows[0]);
-
           return queryResult.rows[0];
         })
         .catch((err) => {
@@ -198,11 +191,8 @@ module.exports = (db) => {
   router.post("/:id/delete_listing", authMiddleware(db), (req, res) => {
     // function to delete a listing
     const deleteListing = function() {
-
       const listingId = req.params.id;
       const userId = req.user.id;
-
-      // console.log("in delete function, listingID:",listingId);
 
       return db.query(`
         DELETE FROM listings
@@ -227,11 +217,8 @@ module.exports = (db) => {
   router.post("/:id/mark_as_sold", authMiddleware(db), (req, res) => {
     // function to delete a listing
     const soldListing = function() {
-
       const listingId = req.params.id;
       const userId = req.user.id;
-
-      console.log("in mark_as_sold function, listingID:",listingId);
 
       return db.query(`
         SELECT is_sold FROM listings
@@ -241,7 +228,7 @@ module.exports = (db) => {
         .then((result) => {
 
           let bool = true;
-          if(result.rows[0].is_sold){
+          if (result.rows[0].is_sold) {
 
             bool = false;
           }
@@ -250,7 +237,7 @@ module.exports = (db) => {
             SET is_sold = ${bool}
             WHERE listings.id = ${listingId}
             AND listings.user_id = ${userId}
-          `)
+          `);
           res.send(bool);
         })
         .catch((err) => {
@@ -264,7 +251,7 @@ module.exports = (db) => {
     soldListing();
 
   });
-  
+
 
   return router;
 };

@@ -14,9 +14,6 @@ $(() => {
       }
     };
 
-
-
-    console.log('mark as sold listingid:',id);
     $.ajax(`/listings/${id}/mark_as_sold`, {type: "POST"})
       .then((isSold)=>{
         if (isSold) {

@@ -4,7 +4,6 @@ const router  = express.Router();
 module.exports = (db) => {
   router.get("/", (req, res) => {
     const userId = req.session.user_id;
-    console.log('userID: ', userId);
 
     if (userId) {
       return db

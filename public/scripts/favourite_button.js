@@ -11,7 +11,6 @@ $(() => {
       }
     };
 
-    console.log('fav button with listingid:',id);
     $.ajax(`/favourites/${id}`, {type: "POST"})
       .then((isFav) => {
         setColor(isFav,id);
