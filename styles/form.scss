@@ -5,6 +5,10 @@ label {
 .form-wrapper {
   margin: 50px 0px;
 
+  textarea {
+    resize: none;
+  }
+
   .btn {
     text-transform: uppercase;
     font-weight: 400;
