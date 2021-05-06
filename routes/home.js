@@ -19,7 +19,7 @@ module.exports = (db) => {
           return db.query(`
             SELECT *
             FROM listings
-            ORDER BY listings.id DESC
+            ORDER BY RANDOM()
             LIMIT 6;
           `)
             .then((queryResults) => {
