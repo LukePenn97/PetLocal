@@ -16,6 +16,12 @@ video {
   align-items: center;
   justify-content: center;
   flex-flow: column;
+  animation: fadein 2s;
+
+  @keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+  }
 
 }
 
@@ -43,9 +49,3 @@ video {
   }
 }
 
-h2 {
-  display: flex;
-  justify-content: center;
-  font-family: 'Roboto', sans-serif;
-  padding-top: 2em;
-}
