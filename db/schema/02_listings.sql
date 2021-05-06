@@ -8,6 +8,6 @@ CREATE TABLE listings (
   image_url VARCHAR(255) NOT NULL,
   title VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
-  date_posted TIMESTAMP NOT NULL,
+  date_posted DATE NOT NULL,
   is_sold BOOLEAN NOT NULL DEFAULT FALSE
 );
