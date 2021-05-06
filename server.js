@@ -46,7 +46,7 @@ const authMiddleware = require("./authMiddleware");
 const homeRoutes = require("./routes/home");
 const listingsRoutes = require("./routes/listings");
 const searchRoutes = require("./routes/search");
-const newItemRoutes = require("./routes/new_item");
+const newListingRoutes = require("./routes/new_listing");
 const favouritesRoutes = require("./routes/favourites");
 const myListingsRoutes = require("./routes/my_listings");
 const loginRoutes = require("./routes/login");
@@ -57,7 +57,7 @@ const logoutRoutes = require("./routes/logout");
 // Note: Feel free to replace the example routes below with your own
 app.use("/listings", listingsRoutes(db));
 app.use("/search", authMiddleware(db), searchRoutes(db));
-app.use("/new_item", authMiddleware(db), newItemRoutes(db));
+app.use("/new_listing", authMiddleware(db), newListingRoutes(db));
 app.use("/favourites", authMiddleware(db), favouritesRoutes(db));
 app.use("/my_listings", authMiddleware(db), myListingsRoutes(db));
 app.use("/login", loginRoutes(db));
