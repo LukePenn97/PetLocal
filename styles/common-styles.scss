@@ -1,6 +1,12 @@
 main {
   padding-top: 100px;
   padding-bottom: 120px;
+  animation: fadein 1s;
+
+  @keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+  }
 }
 
 .img-div {
@@ -24,6 +30,7 @@ main {
   .listing-price {
     font-weight: 700;
   }
+  
 }
 
 .card-bottom {
@@ -63,4 +70,6 @@ h2.listing_title {
   font-family: 'Montserrat', sans-serif;
   padding-top: 2em;
   font-size: 60px;
+  color: white;
+  -webkit-text-stroke: 2px black;
 }
