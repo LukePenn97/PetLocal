@@ -26,9 +26,12 @@ $(() => {
         </div>
 
         <div class="card-bottom">
-        <a href="/listings/${listing.id}">
-          <button type="button" class="btn btn-secondary">View Listing</button>
-        </a>
+        <div id='view-listing-${listing.id}'>
+          <a href="/listings/${listing.id}" class="view_listing">
+            <button type="button" class="btn btn-secondary">View Listing</button>
+          </a>
+        </div>
+        <button id='sold-${listing.id}' type="button" class="btn btn-danger sold"  disabled data-bs-toggle="button" autocomplete="off">SOLD</button>
         <a class="fav" data-id="${listing.id}">
           <i class="fas fa-heart" id="${listing.id}"></i>
         </a>
@@ -61,6 +64,17 @@ $(() => {
           .catch((err)=>console.log(err));
       })
       .catch((err)=>console.log(err));
+
+      $.ajax(`/listings/is_sold`, {type: "GET"})
+        .then((rows) => {
+          console.log(rows)
+          for (const listings of rows) {
+            // console.log("listings.listing_id:",listings.listing_id);
+            $(`#sold-${listings.id}`).css("display","flex");
+            $(`#view-listing-${listings.id}`).css("display","none");
+          }
+        })
+        .catch((err)=>console.log(err));
   });
 });
 

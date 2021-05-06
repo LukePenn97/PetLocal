@@ -19,6 +19,7 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/favourite_button.js"></script>
   <script type="text/javascript" src="/scripts/get_favs.js"></script>
+  <script type="text/javascript" src="/scripts/get_sold.js"></script>
 
   <title>Buy/Sell - All Listings</title>
 </head>
@@ -51,9 +52,12 @@
               </div>
 
               <div class="card-bottom">
-                <a href="/listings/<%= listing.id %>">
-                  <button type="button" class="btn btn-secondary">View Listing</button>
-                </a>
+                <div id='view-listing-<%= listing.id %>'>
+                  <a href="/listings/<%= listing.id %>" class="view_listing">
+                    <button type="button" class="btn btn-secondary">View Listing</button>
+                  </a>
+                </div>
+                <button id='sold-<%= listing.id %>' type="button" class="btn btn-danger sold"  disabled data-bs-toggle="button" autocomplete="off">SOLD</button>
                 <a class="fav" data-id="<%= listing.id %>">
                   <i class="fas fa-heart" id="<%= listing.id %>"></i>
                 </a>
