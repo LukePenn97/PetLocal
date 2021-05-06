@@ -53,14 +53,15 @@
 
   <%- include('partials/_navbar') %>
 
-    <h2 class='listing_title'>Featured Friends!</h2>
     <main class="container">
+
+      <h1 class='listing_title'>Featured Friends!</h1>
 
 
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
         <% for (const listing of listings) { %>
-          
+
           <div class="col">
             <div class="card h-100 hvr-grow-shadow">
               <div class="img-div">
