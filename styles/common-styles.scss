@@ -1,8 +1,3 @@
-main {
-  padding-top: 100px;
-  padding-bottom: 120px;
-}
-
 .img-div {
   height: 250px;
   position: relative;
@@ -14,6 +9,16 @@ main {
     object-fit: cover;
     height: 100%;
   }
+}
+
+div a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover, a:visited, a:link, a:active {
+  text-decoration: none;
+  color: black;
 }
 
 .card-body {
@@ -35,9 +40,14 @@ main {
 
   .btn {
     font-weight: 400;
-    text-transform: uppercase;
+    text-transform: uppercase; 
+    
+  }
+  .sold {
+    display: none;
   }
 }
+
 
 .fav {
   .fa-heart {
@@ -50,3 +60,4 @@ main {
     color: #c81d25;
   }
 }
+

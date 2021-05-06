@@ -65,6 +65,17 @@ module.exports = (db) => {
     }
   });
 
+  router.get("/is_sold", (req, res) => {
+    db.query(`
+      SELECT id FROM listings
+      WHERE listings.is_sold = true
+    `)
+      .then((result)=>{
+        res.send(result.rows);
+      })
+      .catch((err)=>console.log(err));
+  });
+
   // get listing by id
   router.get("/:id", authMiddleware(db), (req, res) => {
     console.log('req.params.id: ', req.params.id);
@@ -231,6 +242,7 @@ module.exports = (db) => {
 
           let bool = true;
           if(result.rows[0].is_sold){
+
             bool = false;
           }
           db.query(`
@@ -239,7 +251,7 @@ module.exports = (db) => {
             WHERE listings.id = ${listingId}
             AND listings.user_id = ${userId}
           `)
-          res.end();
+          res.send(bool);
         })
         .catch((err) => {
           return res.render("error", {
@@ -252,7 +264,7 @@ module.exports = (db) => {
     soldListing();
 
   });
-
+  
 
   return router;
 };
