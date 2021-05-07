@@ -46,7 +46,7 @@ module.exports = (db) => {
 
     addNewListing({...req.body, userId})
       .then(() => {
-        res.redirect('/');
+        res.redirect('/my_listings');
       })
       .catch((err) => {
         return res.render("error", {
