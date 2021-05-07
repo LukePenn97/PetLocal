@@ -177,7 +177,7 @@ module.exports = (db) => {
 
     editListing({...req.body, userId})
       .then(() => {
-        return res.redirect('/');
+        return res.redirect('/my_listings');
       })
       .catch((err) => {
         return res.render("error", {
